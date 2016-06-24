@@ -1,21 +1,25 @@
 # Whitewater Player
 
-A Javascript library for playing videos encoded with [Whitewater Encoder](https://github.com/samiare/whitewater-encoder).
+Whitewater is a solution to some of the limitations of mobile HTML5 video, including lack of inline playback and hit-or-miss implementation of HTML5 Video's Javascript API. It consists of two parts.
+
+1. **Whitewater Encoder**
+   
+   A command line tool that encodes videos into a bundle of files that can be read by the player to recrate video in an HTML `<canvas>` tag.
+
+2. **Whitewater Player**
+   
+   A Javascript library that offers and API for playing Whitewater videos.
 
 [See it in action](https://samiare.github.io/whitewater-player).
 
-## Description
 
-Together, [Whitewater Encoder](https://github.com/samiare/whitewater-encoder) and Whitewater Player give you the ability to play inline video in mobile web browsers complete with programatic playback controls and events.
-
-## Basic Usage
+## Initializing Videos
 
 ```javascript
 var video = new Whitewater(canvas, source [, options]);
 ```
 
-
-### Example
+**Example**
 
 ```html
 <canvas id="video"></canvas>
@@ -35,7 +39,7 @@ var video = new Whitewater(canvas, source [, options]);
 [More examples](https://github.com/samiare/whitewater-player/wiki/Usage#examples).
 
 
-## Initialization Options
+**Initialization Options**
 
 Option | Type | Default | Description
 ------ | :--: | :-----: | -----------
@@ -45,7 +49,9 @@ Option | Type | Default | Description
 `speed` | `float` (between `0.0` and `1.0`) | `1.0` | Allows you to slow the video down by the given amount (`0.5` = half speed).
 
 
-## Methods
+## Controlling Playback
+
+These methods work on both the object returned by `new Whitewater` and the `<canvas>` element that Whitewater is initialize dwith.
 
 Method | Description
 ------ | -----------
@@ -55,8 +61,9 @@ Method | Description
 `stop()` | Stops and resets the video to frame 0.
 
 
-## Full Documentation
+## More
 
-[Check out the wiki](https://github.com/samiare/whitewater-player/wiki).
-
-✌︎
+* Detailed documentation is available at the [Whitewater Player Wiki](https://github.com/samiare/whitewater-player/wiki)
+* Download the [latest build](https://github.com/samiare/whitewater-player/releases/latest)
+* Visit [Whitewater Encoder](https://github.com/samiare/whitewater-encoder) for instructions on encoding videos
+* Check out some [examples](https://samiare.github.io/whitewater-player/)
