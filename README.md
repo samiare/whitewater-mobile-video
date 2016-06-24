@@ -15,11 +15,22 @@ Whitewater is a solution to some of the limitations of mobile HTML5 video, inclu
 
 ## Initializing Videos
 
+**Interface**
+
 ```javascript
 var video = new Whitewater(canvas, source [, options]);
 ```
 
-**Example**
+**Initialization Options**
+
+Option | Type | Default | Description
+------ | :--: | :-----: | -----------
+`loop` | `bool` | `false` | If set to `true`, the video will start over from the beginning when it reaches the end.
+`autoplay` | `bool` | `false` | If set to `true`, the video will automatically play once it's assets are loaded.
+`controls` | `bool`/`element` | `false` | When set to `true`, clicking/tapping on the `<canvas>` will play/pause the video. Optionally, `controls` can be set to an HTML element to be used as the play/pause control.
+`speed` | `float` (between `0.0` and `1.0`) | `1.0` | Allows you to slow the video down by the given amount (`0.5` = half speed).
+
+**Example:**
 
 ```html
 <canvas id="video"></canvas>
@@ -39,19 +50,9 @@ var video = new Whitewater(canvas, source [, options]);
 [More examples](https://github.com/samiare/whitewater-player/wiki/Usage#examples).
 
 
-**Initialization Options**
-
-Option | Type | Default | Description
------- | :--: | :-----: | -----------
-`loop` | `bool` | `false` | If set to `true`, the video will start over from the beginning when it reaches the end.
-`autoplay` | `bool` | `false` | If set to `true`, the video will automatically play once it's assets are loaded.
-`controls` | `bool`/`element` | `false` | When set to `true`, clicking/tapping on the `<canvas>` will play/pause the video. Optionally, `controls` can be set to an HTML element to be used as the play/pause control.
-`speed` | `float` (between `0.0` and `1.0`) | `1.0` | Allows you to slow the video down by the given amount (`0.5` = half speed).
-
-
 ## Controlling Playback
 
-These methods work on both the object returned by `new Whitewater` and the `<canvas>` element that Whitewater is initialize dwith.
+These methods work on both the object returned by `new Whitewater()` and the `<canvas>` element that Whitewater is initialize dwith.
 
 Method | Description
 ------ | -----------
