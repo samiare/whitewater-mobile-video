@@ -15,22 +15,13 @@ Whitewater is a solution to some of the limitations of mobile HTML5 video, inclu
 
 ## Initializing Videos
 
-**Interface**
-
 ```javascript
 var video = new Whitewater(canvas, source [, options]);
 ```
 
-**Initialization Options**
+Full documentation — including methods, events and attributes — can be found in [the wiki](https://github.com/samiare/whitewater-player/wiki).
 
-Option | Type | Default | Description
------- | :--: | :-----: | -----------
-`loop` | `bool` | `false` | If set to `true`, the video will start over from the beginning when it reaches the end.
-`autoplay` | `bool` | `false` | If set to `true`, the video will automatically play once it's assets are loaded.
-`controls` | `bool`/`element` | `false` | When set to `true`, clicking/tapping on the `<canvas>` will play/pause the video. Optionally, `controls` can be set to an HTML element to be used as the play/pause control.
-`speed` | `float` (between `0.0` and `1.0`) | `1.0` | Allows you to slow the video down by the given amount (`0.5` = half speed).
-
-**Example:**
+**Example**
 
 ```html
 <canvas id="video"></canvas>
@@ -47,24 +38,9 @@ Option | Type | Default | Description
 </script>
 ```
 
-[More examples](https://github.com/samiare/whitewater-player/wiki/Usage#examples).
-
-
-## Controlling Playback
-
-These methods work on both the object returned by `new Whitewater()` and the `<canvas>` element that Whitewater is initialize dwith.
-
-Method | Description
------- | -----------
-`play()` | Starts or resumes playback.
-`pause()` | Pauses the video.
-`playpause()` | Plays the video if it is paused and playable. Pauses the video if it is playing.
-`stop()` | Stops and resets the video to frame 0.
-
-
 ## More
 
 * Detailed documentation is available at the [Whitewater Player Wiki](https://github.com/samiare/whitewater-player/wiki)
 * Download the [latest build](https://github.com/samiare/whitewater-player/releases/latest)
 * Visit [Whitewater Encoder](https://github.com/samiare/whitewater-encoder) for instructions on encoding videos
-* Check out some [examples](https://samiare.github.io/whitewater-player/)
+* [See some examples in action](https://samiare.github.io/whitewater-player/)
