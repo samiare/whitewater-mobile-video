@@ -1,25 +1,21 @@
-# Whitewater Player
+**→ [Full Documentation](https://github.com/samiare/whitewater-player/wiki)**  
+**→ [Whitewater Encoder](https://github.com/samiare/whitewater-player)** (needed to prepare videos)  
+**→ [Example Site](https://samiare.github.io/whitewater-player/)**
 
-Whitewater is a solution to some of the limitations of mobile HTML5 video, including lack of inline playback and hit-or-miss implementation of HTML5 Video's Javascript API. It consists of two parts.
 
-1. **Whitewater Encoder**
-   
-   A command line tool that encodes videos into a bundle of files that can be read by the player to recrate video in an HTML `<canvas>` tag.
+# Quick Start
 
-2. **Whitewater Player**
-   
-   A Javascript library that offers and API for playing Whitewater videos.
-
-[See it in action](https://samiare.github.io/whitewater-player).
-
+1. [Download the latest build](https://github.com/samiare/whitewater-player/releases/latest)
+2. Unpack `whitewater.zip` it and copy `whitewater.min.js` into your project files
+3. Include `whitewater.min.js` at the end of your `<body>`:
+   `<script src="path/to/whitewater.min.js"></script>`
+4. Initialize an instance of `Whitewater()`.
 
 ## Initializing Videos
 
 ```javascript
 var video = new Whitewater(canvas, source [, options]);
 ```
-
-Full documentation — including methods, events and attributes — can be found in [the wiki](https://github.com/samiare/whitewater-player/wiki).
 
 **Example**
 
@@ -38,9 +34,4 @@ Full documentation — including methods, events and attributes — can be found
 </script>
 ```
 
-## More
-
-* Detailed documentation is available at the [Whitewater Player Wiki](https://github.com/samiare/whitewater-player/wiki)
-* Download the [latest build](https://github.com/samiare/whitewater-player/releases/latest)
-* Visit [Whitewater Encoder](https://github.com/samiare/whitewater-encoder) for instructions on encoding videos
-* [See some examples in action](https://samiare.github.io/whitewater-player/)
+Initialization options and usage details can be found in [the documentation](https://github.com/samiare/whitewater-player/wiki).
