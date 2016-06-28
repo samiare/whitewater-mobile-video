@@ -1,7 +1,7 @@
 Whitewater is a system for playing specially encoded videos inline on mobile websites.
 
 **→ [Player Documentation](https://github.com/samiare/whitewater-player/wiki)**  
-**→ [Whitewater Encoder](https://github.com/samiare/whitewater-player)** (needed to prepare videos)  
+**→ [Whitewater Encoder](https://github.com/samiare/whitewater-encoder)** (needed to prepare videos)  
 **→ [Example Site](https://samiare.github.io/whitewater-player/)**
 
 
