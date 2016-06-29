@@ -34,7 +34,7 @@ A new encoding system for playing inline videos on the mobile web.
 
 ## Manual Download
 
-1. [Download the latest build](https://github.com/samiare/whitewater-player/releases/latest)
+1. [Download the latest build](https://github.com/samiare/whitewater-mobile-video/releases/latest)
 2. Unpack `whitewater.zip` it and copy `whitewater.min.js` into your project files
 3. Include `whitewater.min.js` at the end of your `<body>`:
    `<script src="path/to/whitewater.min.js"></script>`
@@ -66,4 +66,4 @@ var video = new Whitewater(canvas, source [, options]);
 </script>
 ```
 
-→ Initialization options and usage details can be found in the **[Player Documentation](https://github.com/samiare/whitewater-player/wiki)**.
+→ Initialization options and usage details can be found in the **[Player Documentation](https://github.com/samiare/whitewater-mobile-video/wiki)**.
