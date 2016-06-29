@@ -1,4 +1,4 @@
-# [Whitewater Mobile Video](https://samiare.github.io/whitewater-mobile-video/)
+# [Whitewater Mobile Video](http://samiare.github.io/whitewater-mobile-video/)
 
 A new encoding system for playing inline videos on the mobile web.
 

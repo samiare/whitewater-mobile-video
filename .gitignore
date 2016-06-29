@@ -3,3 +3,4 @@
 
 # Node
 node_modules
+.sass-cache

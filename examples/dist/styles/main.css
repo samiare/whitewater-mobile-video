@@ -1,0 +1,630 @@
+@charset "UTF-8";
+/* IMPORTS
+================================================================================ */
+/* line 1, ../../source/styles/includes/_reset.scss */
+article, aside, audio, command, datagrid, details, dialog, embed,
+figcaption, figure, footer, header, hgroup, menu, nav, section, summary,
+video, wbr {
+  display: block;
+}
+
+/* line 7, ../../source/styles/includes/_reset.scss */
+bdi, figcaption, keygen, mark, meter, progress, rp, rt, ruby, time {
+  display: inline;
+}
+
+/* line 11, ../../source/styles/includes/_reset.scss */
+acronym, applet, big, center, dir, font, frame, frameset, noframes, s,
+strike, tt, u, xmp {
+  display: none;
+}
+
+/* line 16, ../../source/styles/includes/_reset.scss */
+a, abbr, area, article, aside, audio, b, bdo, blockquote, body, button,
+canvas, caption, cite, code, col, colgroup, command, datalist, dd, del,
+details, dialog, dfn, div, dl, dt, em, embed, fieldset, figure, form,
+h1, h2, h3, h4, h5, h6, head, header, hgroup, hr, html, i, iframe, img,
+input, ins, keygen, kbd, label, legend, li, map, mark, menu, meter, nav,
+noscript, object, ol, optgroup, option, output, p, param, pre, progress,
+q, rp, rt, ruby, samp, section, select, small, span, strong, sub, sup,
+table, tbody, td, textarea, tfoot, th, thead, time, tr, ul, var, video {
+  background: transparent;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  text-align: left;
+  text-decoration: none;
+  z-index: 1;
+}
+
+/* line 36, ../../source/styles/includes/_reset.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 40, ../../source/styles/includes/_reset.scss */
+blockquote, q {
+  quotes: none;
+}
+
+/* line 45, ../../source/styles/includes/_reset.scss */
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* line 50, ../../source/styles/includes/_reset.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* refer to https://goo.gl/3loDgL */
+/* line 3, ../../source/styles/includes/_forms.scss */
+.button-container {
+  text-align: center;
+  display: block;
+}
+
+/* line 8, ../../source/styles/includes/_forms.scss */
+.button,
+input[type=submit] {
+  -webkit-transition: border 500ms cubic-bezier(0.19, 1, 0.22, 1), color 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: border 500ms cubic-bezier(0.19, 1, 0.22, 1), color 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: border 500ms cubic-bezier(0.19, 1, 0.22, 1), color 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  transition: border 500ms cubic-bezier(0.19, 1, 0.22, 1), color 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  font: normal 500 18px/56px 'TA Graphik', sans-serif !important;
+  background-color: #ffffff;
+  border: 2px solid #bfbfbf;
+  padding: 0 30px !important;
+  margin: 60px auto 0;
+  height: 60px;
+  width: auto;
+  display: inline-block;
+  box-sizing: border-box;
+  color: #262626;
+  cursor: pointer;
+}
+/* line 24, ../../source/styles/includes/_forms.scss */
+.no-touch .button:hover, .no-touch
+input[type=submit]:hover {
+  border: 2px solid #5959ff;
+  color: #5959ff;
+}
+/* line 29, ../../source/styles/includes/_forms.scss */
+.no-touch .button:active, .no-touch
+input[type=submit]:active {
+  border: 2px solid #5959ff;
+  background-color: #5959ff;
+  color: #ffffff;
+  -webkit-transition: all 100ms cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: all 100ms cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: all 100ms cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 100ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+/* line 37, ../../source/styles/includes/_forms.scss */
+.button.white,
+input[type=submit].white {
+  background-color: transparent;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+/* line 42, ../../source/styles/includes/_forms.scss */
+.button.white:hover,
+input[type=submit].white:hover {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+/* line 47, ../../source/styles/includes/_forms.scss */
+.button.white:active,
+input[type=submit].white:active {
+  border-color: #ffffff;
+  background-color: #ffffff;
+  color: #5959ff;
+}
+
+/* line 55, ../../source/styles/includes/_forms.scss */
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=url] {
+  font: normal 500 18px/56px 'TA Graphik', sans-serif !important;
+  background-color: #ffffff;
+  border: 2px solid #bfbfbf;
+  padding: 0 30px !important;
+  margin: 60px auto 0;
+  height: 60px;
+  width: auto;
+  display: inline-block;
+  box-sizing: border-box;
+  color: #262626;
+}
+/* line 72, ../../source/styles/includes/_forms.scss */
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=search]:focus,
+input[type=tel]:focus,
+input[type=url]:focus {
+  border: 2px solid #5959ff;
+}
+/* line 76, ../../source/styles/includes/_forms.scss */
+input[type=text].white,
+input[type=email].white,
+input[type=password].white,
+input[type=search].white,
+input[type=tel].white,
+input[type=url].white {
+  background-color: transparent;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+/* line 83, ../../source/styles/includes/_forms.scss */
+.button.disabled,
+input:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+@media screen and (max-width: 560px) {
+  /* line 91, ../../source/styles/includes/_forms.scss */
+  .button,
+  input[type=submit],
+  input[type=text],
+  input[type=email],
+  input[type=password],
+  input[type=search],
+  input[type=tel],
+  input[type=url],
+  button {
+    height: 50px;
+    padding: 0 25px !important;
+    font: normal 500 14px/46px 'TA Graphik', sans-serif !important;
+    margin: 60px auto 0;
+  }
+}
+@media all and (orientation: landscape) and (max-height: 320px) {
+  /* line 108, ../../source/styles/includes/_forms.scss */
+  .button,
+  input[type=text],
+  input[type=email],
+  input[type=password],
+  input[type=search],
+  input[type=tel],
+  input[type=url],
+  input[type=submit],
+  button {
+    height: 50px;
+    padding: 0 25px !important;
+    font: normal 500 14px/46px 'TA Graphik', sans-serif !important;
+    margin: 60px auto 0;
+  }
+}
+/* GENERAL
+================================================================================ */
+@font-face {
+  font-family: 'TA Graphik';
+  src: url("../fonts/Graphik-Regular.eot");
+  src: url("../fonts/Graphik-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Graphik-Regular.woff2") format("woff2"), url("../fonts/Graphik-Regular.woff") format("woff"), url("../fonts/Graphik-Regular.ttf") format("truetype"), url("../fonts/Graphik-Regular.svg#Graphik t Web-Regular") format("svg");
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+}
+/* line 26, ../../source/styles/main.scss */
+* {
+  text-rendering: geometricPrecision;
+}
+
+/* line 30, ../../source/styles/main.scss */
+body {
+  color: #262626;
+  font-family: 'TA Graphik';
+}
+
+/* line 35, ../../source/styles/main.scss */
+p.description {
+  font-size: 22px;
+  line-height: 35px;
+  position: relative;
+  top: 13px;
+}
+
+/* line 39, ../../source/styles/main.scss */
+code {
+  font-family: monospace;
+  background-color: rgba(191, 191, 191, 0.1);
+  padding: 0 0.3em;
+}
+
+/* line 45, ../../source/styles/main.scss */
+code.pre {
+  display: block;
+  width: 100%;
+  padding: 20px;
+  border-radius: 2px;
+  box-sizing: border-box;
+  overflow-x: scroll;
+  white-space: pre;
+  line-height: 20px;
+}
+
+/* line 56, ../../source/styles/main.scss */
+a, a:visited {
+  color: #5959ff;
+}
+
+/* line 60, ../../source/styles/main.scss */
+a:hover {
+  color: #262626;
+}
+
+@media (max-width: 660px) {
+  /* line 65, ../../source/styles/main.scss */
+  p.description {
+    font-size: 18px;
+    line-height: 30px;
+    position: relative;
+  }
+
+  /* line 69, ../../source/styles/main.scss */
+  code.pre {
+    padding: 5px;
+  }
+}
+/* HEADER
+================================================================================ */
+/* line 78, ../../source/styles/main.scss */
+header {
+  max-width: 496px;
+  margin: 120px auto;
+  text-align: center;
+}
+/* line 83, ../../source/styles/main.scss */
+header > * {
+  text-align: inherit;
+}
+/* line 87, ../../source/styles/main.scss */
+header h1 {
+  font-size: 64px;
+  line-height: 100px;
+  position: relative;
+  line-height: 80px;
+}
+/* line 92, ../../source/styles/main.scss */
+header p.description {
+  padding-top: 90px;
+}
+
+@media (max-width: 660px) {
+  /* line 98, ../../source/styles/main.scss */
+  header {
+    margin: 60px auto 90px;
+  }
+
+  /* line 102, ../../source/styles/main.scss */
+  header h1 {
+    font-size: 44px;
+    line-height: 60px;
+    position: relative;
+    top: 16px;
+  }
+
+  /* line 106, ../../source/styles/main.scss */
+  header p.description {
+    padding: 60px 23px 0px;
+  }
+}
+/* MAIN
+================================================================================ */
+/* line 115, ../../source/styles/main.scss */
+main {
+  max-width: 706px;
+  margin: 0 auto;
+  padding: 0 23px;
+  box-sizing: border-box;
+}
+
+/* line 122, ../../source/styles/main.scss */
+li.accordion {
+  width: 100%;
+  height: 128px;
+  box-sizing: border-box;
+  border-top: 1px solid #bfbfbf;
+  overflow: hidden;
+  position: relative;
+  transition: height 300ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+/* line 131, ../../source/styles/main.scss */
+li.accordion:last-of-type {
+  height: 129px;
+  border-bottom: 1px solid #bfbfbf;
+}
+
+/* line 137, ../../source/styles/main.scss */
+li.accordion h1 {
+  font-size: 36px;
+  line-height: 50px;
+  position: relative;
+  line-height: 128px;
+  position: relative;
+  cursor: pointer;
+}
+/* line 143, ../../source/styles/main.scss */
+li.accordion h1::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 28px;
+  position: absolute;
+  right: 50px;
+  top: 50px;
+  background: transparent url("../images/arrow.png") no-repeat center center;
+  background-size: 24px 28px;
+  opacity: 1;
+  transform: rotate(0deg);
+  transition: transform 300ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* line 159, ../../source/styles/main.scss */
+li.accordion[data-open=true] h1::after {
+  opacity: 0.2;
+  transform: rotate(-180deg);
+}
+
+@media (max-width: 660px) {
+  /* line 165, ../../source/styles/main.scss */
+  li.accordion h1 {
+    font-size: 22px;
+    line-height: 35px;
+    position: relative;
+    top: 13px;
+    line-height: 128px;
+    top: 0;
+  }
+
+  /* line 171, ../../source/styles/main.scss */
+  li.accordion h1::after {
+    right: 14px;
+  }
+}
+/* EXAMPLES
+================================================================================ */
+/* line 180, ../../source/styles/main.scss */
+section {
+  padding-bottom: 40px;
+}
+/* line 183, ../../source/styles/main.scss */
+section h2 {
+  font-size: 36px;
+  line-height: 50px;
+  position: relative;
+  padding: 40px 0px;
+}
+/* line 188, ../../source/styles/main.scss */
+section p.description {
+  padding: 0px 0px 40px 0px;
+}
+
+/* line 193, ../../source/styles/main.scss */
+section canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  box-sizing: border-box;
+  border: 1px solid #bfbfbf;
+}
+
+/* line 201, ../../source/styles/main.scss */
+#progress-bar {
+  width: 100%;
+  height: 8px;
+  margin: 0 1px 14px;
+  box-sizing: border-box;
+  position: relative;
+  top: -8px;
+}
+/* line 209, ../../source/styles/main.scss */
+#progress-bar::-webkit-progress-bar {
+  background-color: transparent;
+}
+/* line 213, ../../source/styles/main.scss */
+#progress-bar::-webkit-progress-value {
+  background-color: #5959ff;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* line 219, ../../source/styles/main.scss */
+#meta-container {
+  overflow: auto;
+}
+/* line 222, ../../source/styles/main.scss */
+#meta-container > * {
+  float: left;
+}
+/* line 226, ../../source/styles/main.scss */
+#meta-container > div {
+  width: 25%;
+}
+/* line 230, ../../source/styles/main.scss */
+#meta-container > table {
+  width: 75%;
+}
+
+/* line 235, ../../source/styles/main.scss */
+#meta-container button {
+  margin: 0;
+}
+
+/* line 239, ../../source/styles/main.scss */
+table {
+  border-top: 2px solid #bfbfbf;
+  width: 100%;
+}
+
+/* line 244, ../../source/styles/main.scss */
+table tr {
+  border-bottom: 1px solid rgba(191, 191, 191, 0.2);
+}
+
+/* line 248, ../../source/styles/main.scss */
+table th {
+  width: 50%;
+}
+
+/* line 252, ../../source/styles/main.scss */
+table th,
+table td {
+  border: none;
+  margin: 0px;
+  padding: 12px 4px;
+}
+
+/* line 259, ../../source/styles/main.scss */
+table th {
+  font-weight: 500;
+  text-align: left;
+}
+
+@media (max-width: 660px) {
+  /* line 265, ../../source/styles/main.scss */
+  section h2 {
+    font-size: 22px;
+    line-height: 35px;
+    position: relative;
+    top: 13px;
+    padding: 30px 0px;
+  }
+
+  /* line 270, ../../source/styles/main.scss */
+  section p.description {
+    padding: 0px 0px 20px 0px;
+  }
+
+  /* line 273, ../../source/styles/main.scss */
+  #meta-container > div {
+    text-align: center;
+  }
+
+  /* line 277, ../../source/styles/main.scss */
+  #meta-container > div,
+  #meta-container > table {
+    float: none;
+    width: 100%;
+  }
+
+  /* line 283, ../../source/styles/main.scss */
+  #meta-container button {
+    margin: 0 auto 20px;
+  }
+}
+/* FOOTER
+================================================================================ */
+/* line 292, ../../source/styles/main.scss */
+footer {
+  max-width: 660px;
+  margin: 90px auto 120px;
+}
+/* line 296, ../../source/styles/main.scss */
+footer > * {
+  text-align: center;
+  display: block;
+}
+/* line 301, ../../source/styles/main.scss */
+footer > a {
+  font-size: 22px;
+  line-height: 35px;
+  position: relative;
+  top: 13px;
+}
+
+/* line 306, ../../source/styles/main.scss */
+footer small {
+  font-size: 18px;
+  line-height: 30px;
+  position: relative;
+  padding-top: 40px;
+}
+/* line 310, ../../source/styles/main.scss */
+footer small a::after {
+  content: '—';
+  color: #bfbfbf;
+  margin: auto 20px;
+}
+/* line 316, ../../source/styles/main.scss */
+footer small a:last-of-type::after {
+  content: '';
+  margin: 0;
+}
+
+@media (max-width: 660px) {
+  /* line 323, ../../source/styles/main.scss */
+  footer {
+    margin: 60px auto 90px;
+    padding: 0 23px;
+  }
+
+  /* line 328, ../../source/styles/main.scss */
+  footer > a {
+    font-size: 18px;
+    line-height: 30px;
+    position: relative;
+  }
+
+  /* line 332, ../../source/styles/main.scss */
+  footer small a::after {
+    margin: auto 10px;
+  }
+}
+/* CODE BLOCKS
+================================================================================ */
+@media screen {
+  /* line 342, ../../source/styles/main.scss */
+  .prettyprint {
+    /* string content */
+    /* keyword */
+    /* comment */
+    /* type name */
+    /* literal value */
+    /* punctuation */
+    /* variable name */
+  }
+  /* line 344, ../../source/styles/main.scss */
+  .prettyprint .pln {
+    color: #262626;
+  }
+  /* line 349, ../../source/styles/main.scss */
+  .prettyprint .str {
+    color: #8c1aff;
+  }
+  /* line 354, ../../source/styles/main.scss */
+  .prettyprint .kwd {
+    color: #5959ff;
+  }
+  /* line 359, ../../source/styles/main.scss */
+  .prettyprint .com {
+    color: #808080;
+  }
+  /* line 364, ../../source/styles/main.scss */
+  .prettyprint .typ {
+    color: #29cc6d;
+  }
+  /* line 369, ../../source/styles/main.scss */
+  .prettyprint .lit {
+    color: #ff6040;
+  }
+  /* line 374, ../../source/styles/main.scss */
+  .prettyprint .pun {
+    color: #bfbfbf;
+  }
+  /* line 379, ../../source/styles/main.scss */
+  .prettyprint .var {
+    color: #29cc6d;
+  }
+}

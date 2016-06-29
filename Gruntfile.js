@@ -27,7 +27,8 @@ module.exports = function(grunt) {
         },
 
         clean: {
-            temp: ['dist/*']
+            build: ['dist/*'],
+            examples: ['examples/examples.zip', 'examples/dist/*', '!examples/source/**']
         },
 
         jshint: {
@@ -43,6 +44,14 @@ module.exports = function(grunt) {
                 cwd: 'dist/',
                 src: '*',
                 dest: 'examples/js'
+            },
+            examples: {
+                files: [
+                    {expand: true, flatten: true, cwd: 'examples/source/', src: '*', dest: 'examples/dist/', filter: 'isFile'}, // index.html
+                    {expand: true, flatten: true, src: 'examples/source/accordion-content/*', dest: 'examples/dist/subpages'}, // sub-pages
+                    {expand: true, cwd: 'dist/', src: ['*.js', '*.map'], dest: 'examples/dist/js/'}, // .js and .js.map
+                    {expand: true, cwd: 'examples/source/', src: ['images/**', 'videos/**', 'fonts/**'], dest: 'examples/dist/'} // images, videos, fonts
+                ]
             }
         },
 
@@ -59,21 +68,32 @@ module.exports = function(grunt) {
                 }]
             },
 
-            example: {
+            examples: {
                 options: {
-                    archive: 'dist/examples.zip',
+                    archive: 'examples/examples.zip',
                     mode: 'zip'
                 },
                 files: [{
-                    cwd: 'examples/',
+                    cwd: 'examples/dist/',
                     expand: true,
                     src: '**'
                 }]
             }
-        }
+        },
+
+        compass: {
+            examples: {
+                options: {
+                    sassDir: 'examples/source/styles',
+                    cssDir: 'examples/dist/styles'
+                }
+            }
+        },
 
     });
 
+
+    grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -82,7 +102,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-include-replace');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('default', ['clean', 'includereplace:build', 'uglify', 'copy:build', 'compress:build', 'compress:example']);
     grunt.registerTask('hint', ['jshint']);
+    grunt.registerTask('build', ['clean:build', 'includereplace:build', 'uglify', 'compress:build']);
+    grunt.registerTask('build-site', ['clean:examples', 'copy:examples', 'compass:examples', 'compress:examples']);
 
 };

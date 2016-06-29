@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+
+    <body>
+        <main>
+            <p class="description">
+                In this example, play/pause controls have been bound to a button. Stats about the video are updated in the table below using the various custom <code>whitewater&hellip;</code> events provided by the API.
+            </p>
+            <canvas id="video" data-source="videos/02"></canvas>
+            <progress id="progress-bar" value="0" max="100"></progress>
+            <div id="meta-container">
+                <div>
+                    <button class="button" id="playback-button" disabled>Play</button>
+                </div>
+                <table>
+                    <tr id="current-frame">
+                        <th><code>currentFrame</code></th>
+                        <td>0</td>
+                    </tr>
+                    <tr id="progress">
+                        <th><code>progress</code> (%)</th>
+                        <td>0</td>
+                    </tr>
+                    <tr id="seconds-elapsed">
+                        <th><code>secondsElapsed</code></th>
+                        <td>0</td>
+                    </tr>
+                    <tr id="state">
+                        <th><code>state</code></th>
+                        <td></td>
+                    </tr>
+                    <tr id="timestamp">
+                        <th><code>timestamp</code></th>
+                        <td>00:00.000</td>
+                    </tr>
+                    <tr id="max-time">
+                        <th><code>maxTime</code></th>
+                        <td>00:00.000</td>
+                    </tr>
+                </table>
+            </div>
+            <h2>Sample Code</h2>
+        </main>
+
+<script>
+// Video with stats and play/pause button
+
+if (Whitewater.supported) {
+
+    var canvas = document.getElementById('video');
+    var source = canvas.getAttribute('data-source');
+    var button = document.getElementById('playback-button');
+    var options = {
+        loop: false,
+        controls: button,
+        autoplay: false
+    };
+
+    var video = new Whitewater(canvas, source, options);
+
+    canvas.addEventListener('whitewaterprogressupdate', updateInterface, false);
+    canvas.addEventListener('whitewaterload', onVideoLoad, false);
+    canvas.addEventListener('whitewaterpause', onStateChange, false);
+    canvas.addEventListener('whitewaterloop', onStateChange, false);
+    canvas.addEventListener('whitewaterplay', onStateChange, false);
+    canvas.addEventListener('whitewaterend', onStateChange, false);
+
+    function updateInterface(event) {
+        document.querySelector('#current-frame td').innerHTML = event.detail.currentFrame;
+        document.querySelector('#progress td').innerHTML = event.detail.progress;
+        document.querySelector('#seconds-elapsed td').innerHTML = event.detail.secondsElapsed;
+        document.querySelector('#timestamp td').innerHTML = event.detail.timestamp;
+        document.querySelector('#progress-bar').value = event.detail.progress;
+    }
+
+    function onVideoLoad(event) {
+        button.disabled = false;
+        document.querySelector('#max-time td').innerHTML = event.detail.maxTime;
+        onStateChange(event);
+    }
+
+    function onStateChange(event) {
+        document.querySelector('#state td').innerHTML = event.detail.state;
+
+        if (event.detail.state === 'playing') {
+            button.innerHTML = 'Pause';
+            button.setAttribute('data-state', 'pause');
+        } else {
+            button.innerHTML = 'Play';
+            button.setAttribute('data-state', 'play');
+        }
+    }
+}
+</script>
+    </body>
+</html>
