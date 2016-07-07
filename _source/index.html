@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+        <title>Whitewater Mobile Video</title>
+        <meta name="description" content="A new encoding system for playing inline videos on the mobile web." />
+
+        <!-- Open Graph -->
+        <meta property="og:url" content="http://samiare.github.io/whitewater-mobile-video" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Whitewater Mobile Video" />
+        <meta property="og:title" content="Whitewater Mobile Video" />
+        <meta property="og:description" content="A new encoding system for playing inline videos on the mobile web." />
+        <meta property="og:image" content="http://samiare.github.io/whitewater-mobile-video/images/facebook.png" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="fb:admins" content="45503650" />
+
+        <!-- Twitter Cards -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@ThisAlso">
+        <meta name="twitter:creator" content="@SamIAre">
+        <meta name="twitter:title" content="Whitewater Mobile Video">
+        <meta name="twitter:description" content="A new encoding system for playing inline videos on the mobile web.">
+        <meta name="twitter:image" content="http://samiare.github.io/whitewater-mobile-video/images/twitter.png">
+
+        <!--[if IE]><link rel="shortcut icon" href="favicon.ico"><![endif]-->
+        <link rel="icon" href="favicon.ico">
+        <link rel="mask-icon" href="safari-pinned-icon.svg" color="#5959ff">
+
+        <link rel="stylesheet" href="styles/main.css">
+
+    </head>
+
+    <body>
+
+        <header>
+            <h1>Whitewater Mobile&nbsp;Video</h1>
+            <p class="description">
+                A new encoding system for playing inline videos on the mobile web.
+            </p>
+        </header>
+
+        <main>
+            <ul id="examples">
+                <li class="accordion" data-example="example-1">
+                    <h1>Basic Example</h1>
+                    <section></section>
+                </li>
+                <li class="accordion" data-example="example-2">
+                    <h1>Events &amp; Controls</h1>
+                    <section></section>
+                </li>
+                <li class="accordion" data-example="example-3">
+                    <h1>Gallery</h1>
+                    <section></section>
+                </li>
+            </ul>
+        </main>
+
+        <footer>
+            <a href="https://github.com/samiare/whitewater-player">Learn about Whitewater on&nbsp;GitHub</a>
+
+            <small>
+                <a href="http://samiare.net">Samir Zahran</a>
+                <a href="http://thisalso.com">This Also</a>
+            </small>
+        </footer>
+
+        <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+        <script src="js/whitewater.min.js"></script>
+
+        <script>
+
+            var accordionTabs = document.querySelectorAll('#examples .accordion');
+
+            for (var i = 0; i < accordionTabs.length; i++) {
+                accordionTabs[i].querySelector('h1').addEventListener('click', showExample, false);
+            }
+
+            function showExample(event) {
+                var parent = event.target.parentNode;
+                var target = parent.querySelector('section');
+
+                if (parent.getAttribute('data-open') === 'true') {
+                    resetExample(parent);
+                } else {
+                    for (var i = 0; i < accordionTabs.length; i++) {
+                        resetExample(accordionTabs[i]);
+                    }
+
+                    loadContent(target, parent);
+                }
+
+            }
+
+            function loadContent(target, parent) {
+                var exampleID = target.parentNode.getAttribute('data-example');
+                var url = 'subpages/' + exampleID + '.html';
+
+                var xhr = new XMLHttpRequest();
+                xhr.addEventListener('load', function(event) {
+                    var doc = document.implementation.createHTMLDocument();
+                    doc.documentElement.innerHTML = event.target.response;
+
+                    var main = doc.querySelector('main');
+
+                    var script = doc.querySelector('script').innerText;
+                    var code = doc.createElement('code');
+                    code.className = 'pre prettyprint';
+                    code.innerText = script.replace(/^\s+|\s+$/g, '');
+                    main.appendChild(code);
+
+                    var newContent = doc.querySelector('main').innerHTML;
+                    target.innerHTML = newContent;
+
+                    PR.prettyPrint();
+
+                    eval(script);
+
+                    setHeight(parent);
+
+                    parent.setAttribute('data-open', 'true');
+                });
+                xhr.open('GET', url);
+                xhr.send();
+            }
+
+            function resetExample(target) {
+                target.setAttribute('data-open', 'false');
+                target.style.height = '';
+
+                target.querySelector('section').innerHTML = '';
+            }
+
+            function setHeight(target) {
+                var newHeight = 0;
+                var styles = window.getComputedStyle(target);
+                var borderTop = parseInt(styles.getPropertyValue('border-top-width'));
+                var borderBottom = parseInt(styles.getPropertyValue('border-bottom-width'));
+
+                newHeight += target.clientHeight;
+                newHeight += target.querySelector('section').clientHeight;
+                newHeight += borderTop;
+                newHeight += borderBottom;
+
+                target.style.height = newHeight + 'px';
+            }
+
+        </script>
+
+    </body>
+
+</html>

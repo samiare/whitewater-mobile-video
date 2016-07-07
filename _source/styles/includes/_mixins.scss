@@ -1,0 +1,242 @@
+// MIXINS --------------------------------------------/
+
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+    padding: 0 !important;
+
+    &::before {
+        display: block;
+        content: "";
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
+    }
+}
+
+/* refer to https://goo.gl/3loDgL */
+@mixin retina($image) {
+    @media screen and (min--moz-device-pixel-ratio: 1.3),
+            (-o-min-device-pixel-ratio: 2.6/2),
+            (-webkit-min-device-pixel-ratio: 1.3),
+            (min-device-pixel-ratio: 1.3),
+            (min-resolution: 1.3dppx) {
+        background-image: url($image);
+    }
+
+    @media screen and (min-width: $xlarge) {
+        background-image: url($image);
+    }
+}
+
+@mixin minimal-ui() {
+    .minimal-ui & {
+         @content;
+    }
+}
+
+@mixin hardware-accelerate($transforms) {
+    -webkit-transform: translate3d(0, 0, 0) #{$transforms};
+       -moz-transform: translate3d(0, 0, 0) #{$transforms};
+        -ms-transform: translate3d(0, 0, 0) #{$transforms};
+            transform: translate3d(0, 0, 0) #{$transforms};
+}
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name}  {
+        @content;
+    }
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+    -webkit-animation: #{$str};
+       -moz-animation: #{$str};
+        -ms-animation: #{$str};
+         -o-animation: #{$str};
+            animation: #{$str};
+}
+
+@mixin transition($transition) {
+    -webkit-transition: #{$transition};
+       -moz-transition: #{$transition};
+         -o-transition: #{$transition};
+            transition: #{$transition};
+}
+
+@mixin transition-property($property) {
+    -webkit-transition-property: #{$property};
+       -moz-transition-property: #{$property};
+         -o-transition-property: #{$property};
+            transition-property: #{$property};
+}
+
+@mixin transition-duration($duration) {
+    -webkit-transition-property: #{$duration};
+       -moz-transition-property: #{$duration};
+         -o-transition-property: #{$duration};
+            transition-property: #{$duration};
+}
+
+@mixin transition-timing-function($timing) {
+    -webkit-transition-timing-function: #{$timing};
+       -moz-transition-timing-function: #{$timing};
+         -o-transition-timing-function: #{$timing};
+            transition-timing-function: #{$timing};
+}
+
+@mixin transition-delay($delay) {
+    -webkit-transition-delay: #{$delay};
+       -moz-transition-delay: #{$delay};
+         -o-transition-delay: #{$delay};
+            transition-delay: #{$delay};
+}
+
+@mixin filter($filter) {
+    -webkit-filter: #{$filter};
+       -moz-filter: #{$filter};
+         -o-filter: #{$filter};
+            filter: #{$filter};
+}
+
+@mixin transform($transform) {
+    -webkit-transform: #{$transform};
+       -moz-transform: #{$transform};
+        -ms-transform: #{$transform};
+         -o-transform: #{$transform};
+            transform: #{$transform};
+}
+
+@mixin perspective($perspective) {
+    -webkit-perspective: #{$perspective};
+       -moz-perspective: #{$perspective};
+         -o-perspective: #{$perspective};
+            perspective: #{$perspective};
+}
+
+@mixin backface-visibility($backface-visibility) {
+    -webkit-backface-visibility: #{$backface-visibility};
+       -moz-backface-visibility: #{$backface-visibility};
+         -o-backface-visibility: #{$backface-visibility};
+            backface-visibility: #{$backface-visibility};
+}
+
+@mixin no-select() {
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+}
+
+@mixin selection {
+    ::-moz-selection {
+        @content;
+    }
+
+    ::selection {
+        @content;
+    }
+}
+
+@mixin rect-to-square($image, $ext: 'jpg') {
+    background: transparent url(#{$image}-16x9@1x.#{$ext}) no-repeat center center;
+    background-size: cover;
+    @include retina('#{$image}-16x9@2x.#{$ext}');
+    
+    @media screen and (max-width: 560px),
+            screen and (orientation: portrait) and (max-width: 768px) {
+        background-image: url(#{$image}-1x1@2x.#{$ext});
+        @include retina('#{$image}-1x1@2x.#{$ext}');
+    }
+}
+
+
+// FONT SIZES ---------------------------------------------/
+
+@mixin size1 {
+    font-size: 14px;
+    line-height: 25px;
+    position: relative;
+    //top: 13px; // baseline fix
+}
+
+@mixin size2 {
+    font-size: 18px;
+    line-height: 30px;
+    position: relative;
+    //top: 13px; // baseline fix
+}
+
+@mixin size3 {
+    font-size: 22px;
+    line-height: 35px;
+    position: relative;
+    top: 13px; // baseline fix
+}
+
+@mixin size4 {
+    font-size: 28px;
+    line-height: 40px;
+    position: relative;
+    //top: 13px; // baseline fix
+}
+
+@mixin size5 {
+    font-size: 36px;
+    line-height: 50px;
+    position: relative;
+    //top: 13px; // baseline fix
+}
+
+@mixin size6 {
+    font-size: 44px;
+    line-height: 60px;
+    position: relative;
+    top: 16px; // baseline fix
+}
+
+@mixin size7 {
+    font-size: 56px;
+    line-height: 80px;
+    position: relative;
+    top: 12px; // baseline fix
+}
+
+@mixin size8 {
+    font-size: 64px;
+    line-height: 100px;
+    position: relative;
+    //top: 13px; // baseline fix
+}
+
+@mixin size9 {
+    font-size: 88px;
+    line-height: 120px;
+    position: relative;
+    //top: 13px; // baseline fix
+}
+
+@mixin size10 {
+    font-size: 108px;
+    line-height: 160px;
+    position: relative;
+    top: 12px; // baseline fix
+}
+
+@mixin size11 {
+    font-size: 122px;
+    line-height: 220px;
+    position: relative;
+    //top: 13px; // baseline fix
+}

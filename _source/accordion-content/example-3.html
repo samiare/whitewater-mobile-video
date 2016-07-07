@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+
+    <body>
+        <main>
+            <p class="description">
+                This gallery of videos uses the <code>whitewaterplay</code> event and the <code>stop()</code> method to restrict playback to one video at a time, while reseting each other video.
+            </p>
+            <div style="overflow: auto">
+                <canvas style="width: calc((100% - 20px) / 3); float: left;" id="video_1" data-source="videos/balloon"></canvas>
+                <canvas style="width: calc((100% - 20px) / 3); float: left; margin-left: 10px;" id="video_2" data-source="videos/pinata"></canvas>
+                <canvas style="width: calc((100% - 20px) / 3); float: left; margin-left: 10px;" id="video_3" data-source="videos/confetti"></canvas>
+            </div>
+            <h2>Sample Code</h2>
+        </main>
+
+<script>
+// Multi-video gallery
+
+if (Whitewater.supported) {
+
+    var canvases = document.querySelectorAll('canvas');
+    var options = {
+        loop: true,
+        controls: true,
+        autoplay: false
+    };
+
+    for (var i = 0; i < canvases.length; i++) {
+        var canvas = canvases[i];
+        var source = canvas.getAttribute('data-source');
+        var video = new Whitewater(canvas, source, options);
+
+        canvas.addEventListener('whitewaterplay', pauseOthers, false);
+    }
+
+    function pauseOthers(event) {
+        var id = event.target.id;
+
+        for (var i = 0; i < canvases.length; i++) {
+            if (canvases[i].id !== id) {
+                canvases[i].stop();
+            }
+        }
+    }
+}
+</script>
+    </body>
+</html>
