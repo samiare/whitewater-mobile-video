@@ -35,7 +35,7 @@ module.exports = function(grunt) {
                     mode: 'zip'
                 },
                 files: [
-                    {src: ['_source/video_source'], dest: ''},
+                    {expand: true, flatten: true, cwd: '_source/video_source/', src: '**', dest: '', filter: 'isFile'}
                 ]
             }
         },
