@@ -9,10 +9,10 @@
             <p class="description">
                 This gallery of videos uses the <code>whitewaterplay</code> event and the <code>stop()</code> method to restrict playback to one video at a time, while reseting each other video.
             </p>
-            <div style="overflow: auto">
-                <canvas style="width: calc((100% - 20px) / 3); float: left;" id="video_1" data-source="videos/balloon"></canvas>
-                <canvas style="width: calc((100% - 20px) / 3); float: left; margin-left: 10px;" id="video_2" data-source="videos/pinata"></canvas>
-                <canvas style="width: calc((100% - 20px) / 3); float: left; margin-left: 10px;" id="video_3" data-source="videos/confetti"></canvas>
+            <div id="gallery">
+                <canvas id="video_1" data-source="videos/balloon"></canvas>
+                <canvas id="video_2" data-source="videos/pinata"></canvas>
+                <canvas id="video_3" data-source="videos/confetti"></canvas>
             </div>
             <h2>Sample Code</h2>
         </main>

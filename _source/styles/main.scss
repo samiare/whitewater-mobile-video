@@ -61,6 +61,11 @@ a:hover {
     color: $drgray;
 }
 
+button[disabled] {
+    cursor: default;
+    opacity: 0.3;
+}
+
 @media (max-width: 660px) {
     p.description {
         @include size2;
@@ -195,6 +200,8 @@ section canvas {
     height: auto;
     display: block;
     box-sizing: border-box;
+    background: transparent url('../images/loader.gif') no-repeat center center;
+    background-size: 30px 30px;
 }
 
 #progress-bar {
@@ -258,6 +265,20 @@ table td {
 table th {
     font-weight: 500;
     text-align: left;
+}
+
+#gallery {
+    overflow: auto;
+
+    canvas {
+        width: calc((100% - 20px) / 3);
+        float: left;
+        margin-left: 10px;
+
+        &:first-child {
+            margin-left: 0px;
+        }
+    }
 }
 
 @media (max-width: 660px) {
