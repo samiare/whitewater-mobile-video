@@ -258,63 +258,86 @@ code.pre {
 /* line 56, ../_source/styles/main.scss */
 a, a:visited {
   color: #5959ff;
+  -webkit-transition: all 100ms linear;
+  -moz-transition: all 100ms linear;
+  -o-transition: all 100ms linear;
+  transition: all 100ms linear;
 }
 
-/* line 60, ../_source/styles/main.scss */
+/* line 61, ../_source/styles/main.scss */
 a:hover {
   color: #262626;
 }
 
-/* line 64, ../_source/styles/main.scss */
+/* line 65, ../_source/styles/main.scss */
+button:hover {
+  color: #5959ff;
+  border-color: #5959ff;
+}
+
+/* line 70, ../_source/styles/main.scss */
 button[disabled] {
   cursor: default;
   opacity: 0.3;
 }
 
 @media (max-width: 660px) {
-  /* line 70, ../_source/styles/main.scss */
+  /* line 76, ../_source/styles/main.scss */
   p.description {
     font-size: 18px;
     line-height: 30px;
     position: relative;
   }
 
-  /* line 74, ../_source/styles/main.scss */
+  /* line 80, ../_source/styles/main.scss */
   code.pre {
     padding: 5px;
   }
 }
 /* HEADER
 ================================================================================ */
-/* line 83, ../_source/styles/main.scss */
+/* line 89, ../_source/styles/main.scss */
 header {
   max-width: 496px;
   margin: 120px auto;
   text-align: center;
 }
-/* line 88, ../_source/styles/main.scss */
+/* line 94, ../_source/styles/main.scss */
 header > * {
   text-align: inherit;
 }
-/* line 92, ../_source/styles/main.scss */
+/* line 98, ../_source/styles/main.scss */
 header h1 {
   font-size: 64px;
   line-height: 100px;
   position: relative;
   line-height: 80px;
 }
-/* line 97, ../_source/styles/main.scss */
+/* line 103, ../_source/styles/main.scss */
 header p.description {
-  padding-top: 90px;
+  padding: 90px 0px 20px;
+}
+/* line 107, ../_source/styles/main.scss */
+header > a {
+  font-size: 22px;
+  line-height: 35px;
+  position: relative;
+  top: 13px;
+  border-bottom: 1px solid #5959ff;
+  padding-bottom: 4px;
+}
+/* line 112, ../_source/styles/main.scss */
+header > a:hover {
+  border-bottom-color: #bfbfbf;
 }
 
 @media (max-width: 660px) {
-  /* line 103, ../_source/styles/main.scss */
+  /* line 119, ../_source/styles/main.scss */
   header {
     margin: 60px auto 90px;
   }
 
-  /* line 107, ../_source/styles/main.scss */
+  /* line 123, ../_source/styles/main.scss */
   header h1 {
     font-size: 44px;
     line-height: 60px;
@@ -322,14 +345,21 @@ header p.description {
     top: 16px;
   }
 
-  /* line 111, ../_source/styles/main.scss */
+  /* line 127, ../_source/styles/main.scss */
   header p.description {
-    padding: 60px 23px 0px;
+    padding: 60px 23px 20px;
+  }
+
+  /* line 131, ../_source/styles/main.scss */
+  header > a {
+    font-size: 18px;
+    line-height: 30px;
+    position: relative;
   }
 }
 /* MAIN
 ================================================================================ */
-/* line 120, ../_source/styles/main.scss */
+/* line 140, ../_source/styles/main.scss */
 main {
   max-width: 706px;
   margin: 0 auto;
@@ -337,7 +367,7 @@ main {
   box-sizing: border-box;
 }
 
-/* line 127, ../_source/styles/main.scss */
+/* line 147, ../_source/styles/main.scss */
 li.accordion {
   width: 100%;
   height: 128px;
@@ -347,13 +377,13 @@ li.accordion {
   position: relative;
   transition: height 300ms cubic-bezier(0.19, 1, 0.22, 1);
 }
-/* line 136, ../_source/styles/main.scss */
+/* line 156, ../_source/styles/main.scss */
 li.accordion:last-of-type {
   height: 129px;
   border-bottom: 1px solid #bfbfbf;
 }
 
-/* line 142, ../_source/styles/main.scss */
+/* line 162, ../_source/styles/main.scss */
 li.accordion h1 {
   font-size: 36px;
   line-height: 50px;
@@ -362,7 +392,7 @@ li.accordion h1 {
   position: relative;
   cursor: pointer;
 }
-/* line 148, ../_source/styles/main.scss */
+/* line 168, ../_source/styles/main.scss */
 li.accordion h1::after {
   content: '';
   display: block;
@@ -378,14 +408,14 @@ li.accordion h1::after {
   transition: transform 300ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* line 164, ../_source/styles/main.scss */
+/* line 184, ../_source/styles/main.scss */
 li.accordion[data-open=true] h1::after {
   opacity: 0.2;
   transform: rotate(-180deg);
 }
 
 @media (max-width: 660px) {
-  /* line 170, ../_source/styles/main.scss */
+  /* line 190, ../_source/styles/main.scss */
   li.accordion h1 {
     font-size: 22px;
     line-height: 35px;
@@ -395,30 +425,30 @@ li.accordion[data-open=true] h1::after {
     top: 0;
   }
 
-  /* line 176, ../_source/styles/main.scss */
+  /* line 196, ../_source/styles/main.scss */
   li.accordion h1::after {
     right: 14px;
   }
 }
 /* EXAMPLES
 ================================================================================ */
-/* line 185, ../_source/styles/main.scss */
+/* line 205, ../_source/styles/main.scss */
 section {
   padding-bottom: 40px;
 }
-/* line 188, ../_source/styles/main.scss */
+/* line 208, ../_source/styles/main.scss */
 section h2 {
   font-size: 36px;
   line-height: 50px;
   position: relative;
   padding: 40px 0px;
 }
-/* line 193, ../_source/styles/main.scss */
+/* line 213, ../_source/styles/main.scss */
 section p.description {
   padding: 0px 0px 40px 0px;
 }
 
-/* line 198, ../_source/styles/main.scss */
+/* line 218, ../_source/styles/main.scss */
 section canvas {
   width: 100%;
   height: auto;
@@ -426,9 +456,14 @@ section canvas {
   box-sizing: border-box;
   background: transparent url("../images/loader.gif") no-repeat center center;
   background-size: 30px 30px;
+  cursor: pointer;
+}
+/* line 227, ../_source/styles/main.scss */
+[data-example=example-2] section canvas {
+  cursor: default;
 }
 
-/* line 207, ../_source/styles/main.scss */
+/* line 232, ../_source/styles/main.scss */
 #progress-bar {
   width: 100%;
   height: 8px;
@@ -437,55 +472,55 @@ section canvas {
   position: relative;
   top: -8px;
 }
-/* line 215, ../_source/styles/main.scss */
+/* line 240, ../_source/styles/main.scss */
 #progress-bar::-webkit-progress-bar {
   background-color: transparent;
 }
-/* line 219, ../_source/styles/main.scss */
+/* line 244, ../_source/styles/main.scss */
 #progress-bar::-webkit-progress-value {
   background-color: #5959ff;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* line 225, ../_source/styles/main.scss */
+/* line 250, ../_source/styles/main.scss */
 #meta-container {
   overflow: auto;
 }
-/* line 228, ../_source/styles/main.scss */
+/* line 253, ../_source/styles/main.scss */
 #meta-container > * {
   float: left;
 }
-/* line 232, ../_source/styles/main.scss */
+/* line 257, ../_source/styles/main.scss */
 #meta-container > div {
   width: 25%;
 }
-/* line 236, ../_source/styles/main.scss */
+/* line 261, ../_source/styles/main.scss */
 #meta-container > table {
   width: 75%;
 }
 
-/* line 241, ../_source/styles/main.scss */
+/* line 266, ../_source/styles/main.scss */
 #meta-container button {
   margin: 0;
 }
 
-/* line 245, ../_source/styles/main.scss */
+/* line 270, ../_source/styles/main.scss */
 table {
   border-top: 2px solid #bfbfbf;
   width: 100%;
 }
 
-/* line 250, ../_source/styles/main.scss */
+/* line 275, ../_source/styles/main.scss */
 table tr {
   border-bottom: 1px solid rgba(191, 191, 191, 0.2);
 }
 
-/* line 254, ../_source/styles/main.scss */
+/* line 279, ../_source/styles/main.scss */
 table th {
   width: 50%;
 }
 
-/* line 258, ../_source/styles/main.scss */
+/* line 283, ../_source/styles/main.scss */
 table th,
 table td {
   border: none;
@@ -493,29 +528,29 @@ table td {
   padding: 12px 4px;
 }
 
-/* line 265, ../_source/styles/main.scss */
+/* line 290, ../_source/styles/main.scss */
 table th {
   font-weight: 500;
   text-align: left;
 }
 
-/* line 270, ../_source/styles/main.scss */
+/* line 295, ../_source/styles/main.scss */
 #gallery {
   overflow: auto;
 }
-/* line 273, ../_source/styles/main.scss */
+/* line 298, ../_source/styles/main.scss */
 #gallery canvas {
   width: calc((100% - 20px) / 3);
   float: left;
   margin-left: 10px;
 }
-/* line 278, ../_source/styles/main.scss */
+/* line 303, ../_source/styles/main.scss */
 #gallery canvas:first-child {
   margin-left: 0px;
 }
 
 @media (max-width: 660px) {
-  /* line 285, ../_source/styles/main.scss */
+  /* line 310, ../_source/styles/main.scss */
   section h2 {
     font-size: 22px;
     line-height: 35px;
@@ -524,41 +559,41 @@ table th {
     padding: 30px 0px;
   }
 
-  /* line 290, ../_source/styles/main.scss */
+  /* line 315, ../_source/styles/main.scss */
   section p.description {
     padding: 0px 0px 20px 0px;
   }
 
-  /* line 293, ../_source/styles/main.scss */
+  /* line 318, ../_source/styles/main.scss */
   #meta-container > div {
     text-align: center;
   }
 
-  /* line 297, ../_source/styles/main.scss */
+  /* line 322, ../_source/styles/main.scss */
   #meta-container > div,
   #meta-container > table {
     float: none;
     width: 100%;
   }
 
-  /* line 303, ../_source/styles/main.scss */
+  /* line 328, ../_source/styles/main.scss */
   #meta-container button {
     margin: 0 auto 20px;
   }
 }
 /* FOOTER
 ================================================================================ */
-/* line 312, ../_source/styles/main.scss */
+/* line 337, ../_source/styles/main.scss */
 footer {
   max-width: 660px;
   margin: 90px auto 120px;
 }
-/* line 316, ../_source/styles/main.scss */
+/* line 341, ../_source/styles/main.scss */
 footer > * {
   text-align: center;
   display: block;
 }
-/* line 321, ../_source/styles/main.scss */
+/* line 346, ../_source/styles/main.scss */
 footer > a {
   font-size: 22px;
   line-height: 35px;
@@ -566,40 +601,40 @@ footer > a {
   top: 13px;
 }
 
-/* line 326, ../_source/styles/main.scss */
+/* line 351, ../_source/styles/main.scss */
 footer small {
   font-size: 18px;
   line-height: 30px;
   position: relative;
   padding-top: 40px;
 }
-/* line 330, ../_source/styles/main.scss */
+/* line 355, ../_source/styles/main.scss */
 footer small a::after {
   content: '—';
   color: #bfbfbf;
   margin: auto 20px;
 }
-/* line 336, ../_source/styles/main.scss */
+/* line 361, ../_source/styles/main.scss */
 footer small a:last-of-type::after {
   content: '';
   margin: 0;
 }
 
 @media (max-width: 660px) {
-  /* line 343, ../_source/styles/main.scss */
+  /* line 368, ../_source/styles/main.scss */
   footer {
     margin: 60px auto 90px;
     padding: 0 23px;
   }
 
-  /* line 348, ../_source/styles/main.scss */
+  /* line 373, ../_source/styles/main.scss */
   footer > a {
     font-size: 18px;
     line-height: 30px;
     position: relative;
   }
 
-  /* line 352, ../_source/styles/main.scss */
+  /* line 377, ../_source/styles/main.scss */
   footer small a::after {
     margin: auto 10px;
   }
@@ -607,7 +642,7 @@ footer small a:last-of-type::after {
 /* CODE BLOCKS
 ================================================================================ */
 @media screen {
-  /* line 362, ../_source/styles/main.scss */
+  /* line 387, ../_source/styles/main.scss */
   .prettyprint {
     /* string content */
     /* keyword */
@@ -617,35 +652,35 @@ footer small a:last-of-type::after {
     /* punctuation */
     /* variable name */
   }
-  /* line 364, ../_source/styles/main.scss */
+  /* line 389, ../_source/styles/main.scss */
   .prettyprint .pln {
     color: #262626;
   }
-  /* line 369, ../_source/styles/main.scss */
+  /* line 394, ../_source/styles/main.scss */
   .prettyprint .str {
     color: #8c1aff;
   }
-  /* line 374, ../_source/styles/main.scss */
+  /* line 399, ../_source/styles/main.scss */
   .prettyprint .kwd {
     color: #5959ff;
   }
-  /* line 379, ../_source/styles/main.scss */
+  /* line 404, ../_source/styles/main.scss */
   .prettyprint .com {
     color: #808080;
   }
-  /* line 384, ../_source/styles/main.scss */
+  /* line 409, ../_source/styles/main.scss */
   .prettyprint .typ {
     color: #29cc6d;
   }
-  /* line 389, ../_source/styles/main.scss */
+  /* line 414, ../_source/styles/main.scss */
   .prettyprint .lit {
     color: #ff6040;
   }
-  /* line 394, ../_source/styles/main.scss */
+  /* line 419, ../_source/styles/main.scss */
   .prettyprint .pun {
     color: #bfbfbf;
   }
-  /* line 399, ../_source/styles/main.scss */
+  /* line 424, ../_source/styles/main.scss */
   .prettyprint .var {
     color: #29cc6d;
   }

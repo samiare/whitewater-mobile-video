@@ -7,7 +7,7 @@
     <body>
         <main>
             <p class="description">
-                In this example, play/pause controls have been bound to a button. Stats about the video are updated in the table below using the various custom <code>whitewater&hellip;</code> events provided by the API.
+                A table below the video updates with real-time video information using various <code>whitewater&hellip;</code> events provided by the API. Play and pause are bound to button with the <code>controls</code> options.
             </p>
             <canvas id="video" data-source="videos/faces"></canvas>
             <progress id="progress-bar" value="0" max="100"></progress>
@@ -64,9 +64,14 @@ if (Whitewater.supported) {
     canvas.addEventListener('whitewaterprogressupdate', updateInterface, false);
     canvas.addEventListener('whitewaterload', onVideoLoad, false);
     canvas.addEventListener('whitewaterpause', onStateChange, false);
-    canvas.addEventListener('whitewaterloop', onStateChange, false);
     canvas.addEventListener('whitewaterplay', onStateChange, false);
     canvas.addEventListener('whitewaterend', onStateChange, false);
+
+    function onVideoLoad(event) {
+        button.disabled = false;
+        document.querySelector('#max-time td').innerHTML = event.detail.maxTime;
+        onStateChange(event);
+    }
 
     function updateInterface(event) {
         document.querySelector('#current-frame td').innerHTML = event.detail.currentFrame;
@@ -76,21 +81,13 @@ if (Whitewater.supported) {
         document.querySelector('#progress-bar').value = event.detail.progress;
     }
 
-    function onVideoLoad(event) {
-        button.disabled = false;
-        document.querySelector('#max-time td').innerHTML = event.detail.maxTime;
-        onStateChange(event);
-    }
-
     function onStateChange(event) {
         document.querySelector('#state td').innerHTML = event.detail.state;
 
         if (event.detail.state === 'playing') {
             button.innerHTML = 'Pause';
-            button.setAttribute('data-state', 'pause');
         } else {
             button.innerHTML = 'Play';
-            button.setAttribute('data-state', 'play');
         }
     }
 }

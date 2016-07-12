@@ -55,10 +55,16 @@ code.pre {
 
 a, a:visited {
     color: $seltzer;
+    @include transition('all 100ms linear');
 }
 
 a:hover {
     color: $drgray;
+}
+
+button:hover {
+    color: $seltzer;
+    border-color: $seltzer;
 }
 
 button[disabled] {
@@ -95,7 +101,17 @@ header {
     }
 
     p.description {
-        padding-top: 90px;
+        padding: 90px 0px 20px;
+    }
+
+    > a {
+        @include size3;
+        border-bottom: 1px solid $seltzer;
+        padding-bottom: 4px;
+
+        &:hover {
+            border-bottom-color: $lilgray;
+        }
     }
 }
 
@@ -109,7 +125,11 @@ header {
     }
 
     header p.description {
-        padding: 60px 23px 0px;
+        padding: 60px 23px 20px;
+    }
+
+    header > a {
+        @include size2;
     }
 }
 
@@ -202,6 +222,11 @@ section canvas {
     box-sizing: border-box;
     background: transparent url('../images/loader.gif') no-repeat center center;
     background-size: 30px 30px;
+    cursor: pointer;
+
+    [data-example=example-2] & {
+        cursor: default;
+    }
 }
 
 #progress-bar {
