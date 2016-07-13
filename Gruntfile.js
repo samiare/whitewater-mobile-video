@@ -62,5 +62,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('hint', ['jshint']);
     grunt.registerTask('build', ['clean:build', 'includereplace:build', 'uglify', 'compress:build']);
+    grunt.registerTask('compile', ['includereplace:build', 'uglify']);
 
 };

@@ -15,6 +15,10 @@ function Whitewater(canvas, inputPath, options) {
     var path            = '';
     var settings        = {};
 
+    // Page Visibility API compatibility
+    var hiddenProperty  = null;
+    var documentHidden  = false;
+
 
     // Public members
 
@@ -43,6 +47,31 @@ function Whitewater(canvas, inputPath, options) {
         this.canvas.pause = this.pause;
         this.canvas.playpause = this.playpause;
         this.canvas.stop = this.stop;
+    }
+
+    function addVisibilityListener() {
+        if ('hidden' in document) {
+            hiddenProperty = 'hidden';
+            document.addEventListener('visibilitychange', softPause.bind(this), false);
+        } else if ('mozHidden' in document) {
+            hiddenProperty = 'mozHidden';
+            document.addEventListener('mozvisibilitychange', softPause.bind(this), false);
+        } else if ('msHidden' in document) {
+            hiddenProperty = 'msHidden';
+            document.addEventListener('msvisibilitychange', softPause.bind(this), false);
+        } else if ('webkitHidden' in document) {
+            hiddenProperty = 'webkitHidden';
+            document.addEventListener('webkitvisibilitychange', softPause.bind(this), false);
+        } else if ('onfocusin' in document) {
+            document.addEventListener('focusin', softPause.bind(this, false), false);
+            document.addEventListener('focusout', softPause.bind(this, true), false);
+        } else if ('onpageshow' in window) {
+            window.addEventListener('pageshow', softPause.bind(this, false), false);
+            window.addEventListener('pagehide', softPause.bind(this, true), false);
+        } else {
+            window.addEventListener('focus', softPause.bind(this, false), false);
+            window.addEventListener('blur', softPause.bind(this, true), false);
+        }
     }
 
     function checkImagesLoaded() {
@@ -366,6 +395,19 @@ function Whitewater(canvas, inputPath, options) {
         this.maxTime = getFormattedTime(lengthInSeconds);
     }
 
+    function softPause(hidden) {
+        if (hidden !== undefined) {
+            documentHidden = hidden;
+        }
+
+        if ((document[hiddenProperty] || documentHidden === true) && Video.state === 'playing') {
+            this.state = 'suspended';
+            this.pause();
+        } else if (Video.state === 'suspended') {
+            this.play();
+        }
+    }
+
     function init() {
         try {
             setCanvasElement.call(this);
@@ -374,10 +416,12 @@ function Whitewater(canvas, inputPath, options) {
 
             var callAfterManifest = [
                 loadRequiredImages.bind(this),
-                addCanvasMethods.bind(this)
+                addCanvasMethods.bind(this),
+                addVisibilityListener.bind(this)
             ];
 
             parseManifestFile.call(this, callAfterManifest);
+
         } catch(error) {
             this.constructor._throwError(error);
             return;
@@ -450,11 +494,13 @@ function Whitewater(canvas, inputPath, options) {
             return;
         }
 
-        Video.canvas.setAttribute('data-state', 'paused');
-        Video.state = 'paused';
+        if (Video.state !== 'suspended') {
+            Video.canvas.setAttribute('data-state', 'paused');
+            Video.state = 'paused';
 
-        var pauseEvent = new CustomEvent('whitewaterpause', getEventOptions.call(Video));
-        Video.canvas.dispatchEvent(pauseEvent);
+            var pauseEvent = new CustomEvent('whitewaterpause', getEventOptions.call(Video));
+            Video.canvas.dispatchEvent(pauseEvent);
+        }
 
         cancelAnimationFrame(animationFrame);
     };
@@ -466,24 +512,27 @@ function Whitewater(canvas, inputPath, options) {
             resetVideo.call(Video);
         }
 
+        var resume = Video.state === 'suspended';
+
         Video.canvas.setAttribute('data-state', 'playing');
         Video.state = 'playing';
 
-        var playEvent = new CustomEvent('whitewaterplay', getEventOptions.call(Video));
-        Video.canvas.dispatchEvent(playEvent);
+        if (!resume) {
+            var playEvent = new CustomEvent('whitewaterplay', getEventOptions.call(Video));
+            Video.canvas.dispatchEvent(playEvent);
+        }
 
         var milliseconds = 1 / settings.framesPerSecond * 1000;
         var interval = getNumberWithDecimals(milliseconds / options.speed, 2);
-        var previousTimestamp = window.performance.now();
+        var previousTime = window.performance.now();
 
-        animate();
+        animate(previousTime);
 
-        function animate(currentTimeStamp) {
+        function animate(currentTime) {
 
-            var secondsElapsed = currentTimeStamp - previousTimestamp;
-            animationFrame = requestAnimationFrame(animate);
+            var timeSinceLastDraw = currentTime - previousTime;
 
-            if (secondsElapsed >= interval) {
+            if (timeSinceLastDraw >= interval) {
 
                 if (Video.currentFrame < settings.frameCount + 1) {
 
@@ -509,9 +558,13 @@ function Whitewater(canvas, inputPath, options) {
 
                 }
 
-                var lag = secondsElapsed - interval;
-                previousTimestamp = currentTimeStamp - lag;
+                var lag = timeSinceLastDraw - interval;
+                previousTime = currentTime - lag;
 
+            }
+
+            if (!(document[hiddenProperty] || documentHidden === true) && Video.state === 'playing') {
+                animationFrame = requestAnimationFrame(animate);
             }
         }
     };
@@ -551,6 +604,7 @@ Whitewater.errors = {
     MISC            : 'Whatever.',
     WEBWORKERS      : 'This browser does not support Web Workers.',
     BLOBCONSTRUCTOR : 'This browser does not support the Blob() constructor.',
+    VISIBILITYAPI   : 'This browser does not support the Visiblity API',
     CANVAS          : '"canvas" must be a valid HTML canvas element.',
     PATH            : '"path" must be a path to a directory containing a manifest.json file',
     MANIFEST        : 'A manifest.json file could not be found.'
@@ -562,6 +616,11 @@ Whitewater._checkSupport = function() {
             throw this.errors.WEBWORKERS;
         } else if (!window.Worker) {
             throw this.errors.BLOBCONSTRUCTOR;
+        } else if (!(('hidden' in document) ||
+                     ('mozHidden' in document) ||
+                     ('msHidden' in document) ||
+                     ('webkitHidden' in document))) {
+            throw this.errors.VISIBILITYAPI;
         } else {
             return true;
         }
