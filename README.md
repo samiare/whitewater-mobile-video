@@ -4,11 +4,11 @@ A new encoding system for playing inline videos on the mobile web.
 
 1. **Whitewater Player**
    
-   A Javascript library for playing videos prepared by encoder (standard video files will not work). It offer a flexible API with playback methods, data about the current video and events.
+   A Javascript library for playing videos prepared by encoder (standard video files will not work). It offers a flexible API with playback methods, data about the current video and events.
    
 2. **Whitewater Encoder**
    
-   A command line tool and Python module that encodes videos into a bundle of files that can be read by the player to recrate video in an HTML `<canvas>` tag.
+   A command line tool and Python module that encodes videos into a bundle of files that can be read by the player to recreate video in an HTML `<canvas>` tag.
    
    **→ [View on GitHub](https://github.com/samiare/whitewater-encoder)**
 
@@ -35,7 +35,7 @@ A new encoding system for playing inline videos on the mobile web.
 ## Manual Download
 
 1. [Download the latest build](https://github.com/samiare/whitewater-mobile-video/releases/latest)
-2. Unpack `whitewater.zip` it and copy `whitewater.min.js` into your project files
+2. Unpack `whitewater.zip` and copy `whitewater.min.js` into your project files
 3. Include `whitewater.min.js` at the end of your `<body>`:
    `<script src="path/to/whitewater.min.js"></script>`
 4. Initialize an instance of `Whitewater()`.
