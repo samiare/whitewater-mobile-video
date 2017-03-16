@@ -222,30 +222,32 @@ function Whitewater(canvas, inputPath, options) {
                 
                     workerIsIncluded = true;
 
-                    onmessage = function(e) {
-                        var frames = e.data;
-                        var videoData = [];
+                    onmessage = function (e) {
+                        if (e.data.origin === "whitewater") {
+                            var frames = e.data.data;
+                            var videoData = [];
 
-                        for (var i = 0; i < frames.length; i++) {
-                            var frame = frames[i];
-                            var frameData = [];
+                            for (var i = 0; i < frames.length; i++) {
+                                var frame = frames[i];
+                                var frameData = [];
 
-                            if (frame !== "") {
-                                var map = frame.match(/.{1,5}/g);
-                                var mapLength = map.length;
+                                if (frame !== "") {
+                                    var map = frame.match(/.{1,5}/g);
+                                    var mapLength = map.length;
 
-                                for (var j = 0; j < mapLength; j++) {
-                                    var position = toBase10(map[j].substr(0, 3));
-                                    var consecutive = toBase10(map[j].substr(3, 2));
+                                    for (var j = 0; j < mapLength; j++) {
+                                        var position = toBase10(map[j].substr(0, 3));
+                                        var consecutive = toBase10(map[j].substr(3, 2));
 
-                                    frameData.push([position, consecutive]);
+                                        frameData.push([position, consecutive]);
+                                    }
                                 }
+
+                                videoData.push(frameData);
                             }
 
-                            videoData.push(frameData);
+                            postMessage(videoData);
                         }
-
-                        postMessage(videoData);
                     };
 
                     function toBase10(val) {
@@ -278,7 +280,10 @@ function Whitewater(canvas, inputPath, options) {
 
             }
 
-            myWorker.postMessage(manifest.frames);
+            myWorker.postMessage({
+                data: manifest.frames,
+                origin: "whitewater"
+            });
 
             myWorker.onmessage = function(event) {
                 frames = event.data;
