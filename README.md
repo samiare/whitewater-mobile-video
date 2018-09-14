@@ -1,3 +1,9 @@
+### :warning: IMPORTANT UPDATE :warning:
+
+This project (and the corresponding [encoder](https://github.com/samiare/whitewater-encoder)) are **no longer maintained**.
+
+This was an enormously fun project to create, but I never had adequate time for updates and it was made almost immediately obsolete by the adoption of auto-play HTML5 video in most mobile web browsers soon after it's initial release.
+
 # [Whitewater Mobile Video](http://samiare.github.io/whitewater-mobile-video/)
 
 A new encoding system for playing inline videos on the mobile web.
